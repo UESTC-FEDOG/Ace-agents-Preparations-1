@@ -1,108 +1,70 @@
-[任务四十六](http://ife.baidu.com/task/detail?taskId=46)
-
-### Ace-agents-Preparations-1 DOC
-----
-* **Class Agent**
-
-	* **Methods**：
-
-		* New Agent (posistionX, positionY): constructor
-
-			- **parameters**:
-
-				{Num} positionX;
-
-				-X轴坐标
-
-				{Num} positionY;
-
-				-Y轴坐标；
-
-				初始化特工位置
-
-		 * setPosition (posistionX, positionY)：
-
-			- **parameters**:
-
-				{Num} positionX;
-
-				-X轴坐标
-
-				{Num} positionY;
-
-				-Y轴坐标；
-
-				更新特工位置
-
-		* getPosition (): **Array**
-
-			return [this.positionX, this.postitionY];
-
-			返回特工当前位置
-
-		* pathFinding (endPosition): **Array**
-
-			- **parameters**:
-
-				{Array} endPosition;
-
-			return [[x1,y2]...[xn,yn]]
-
-			返回由可前进最短路线数组，如果不可到达则返回null;
-
-* **Class Wall**
-
-	* **Methods**：
-
-		* New Wall (): constructor
-
-		* getWallPosition	(): **Array**
-
-			return [...[positionX, positionY]];
-
-			返回一组由算法生成的墙的位置（数组中每个小数组即为一个墙点）
-
-* **Class File**
-
-	* **Methods**：
-
-		* New File (): constructor
-
-		* getFilePosition	(): **Array**
-
-			return [positionX, positionY];
-
-			返回文件位置
 
 
-* **Class Map**
+#Agent类
+每个实例表示一个特工对象
 
-	* **Methods**：
+##构造器
 
-		* New Map (): constructor
++ 参数：坐标数组。确定其所在初始位置
 
-			this.map = [];
+##实例属性和方法
 
-		* createMap () :
++ setPosition(坐标数组)：设定Agent实例所在坐标
++ getPosition()：返回一个表示所在坐标的数组
++ pathFinding(终点的坐标数组)：返回一个表示路径的数组，不可达则返回null
 
-			this.map = map;
+#Wall类
+每个实例表示一个墙对象
 
-			生成表示原始grid地图的矩阵
+##构造器
 
-		* getMap (): **Array**
++ 参数：坐标数组。确定其所在位置
 
-			return this.map;
+##实例属性和方法
 
-			返回一个表示原始grid地图的矩阵
++ getPosition()：返回一个表示所在坐标的数组
 
-		* changeMap (Wall): **Array**
+##静态方法
 
-			- **parameters**:
++ generateWalls()：返回一个表示全部墙的矩阵
 
-				{Array} Wall;
+#File类
+每个实例表示一个机密文件
 
-				-表示墙的矩阵数组
+##构造器
 
-			return this.map
++ 参数：坐标数组。确定其所在位置
 
-			返回一个加上墙的数组矩阵
+##实例属性和方法
+
++ getPosition()：返回一个表示所在坐标的数组
+
+#Map类
+
+一个实例表示游戏的地图
+
+##构造器
+
++ 参数：无
+
+可在构造函数内调用init方法
+
+##实例属性和方法
+
++ getMap()：一个数组。成员是GridPoint实例
++ init()：生成一个新地图
+
+#GridPoint类
+
+一个实例表示地图上的一格
+
+##构造器
+
++ 参数：坐标数组与一个构造函数
+
+用于构造实例的如下属性
+
+##实例属性和方法
+
++ coordinate：数组，表示该格的坐标
++ placeholder：可能是Wall实例、File实例、Agent实例或null，表示该格上是什么东西
